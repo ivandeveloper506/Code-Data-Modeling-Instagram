@@ -40,6 +40,7 @@ class User(Base):
     password = Column(String(50))
     user_image = Column(String(2000))
 
+# [follower] : Esta entidad permitirá almacenar los seguidores, es decir que usuario sigue a cual y viceversa.
 class Follower(Base):
     __tablename__ = 'follower'
     id = Column(Integer, primary_key=True)
@@ -49,6 +50,7 @@ class Follower(Base):
     user_fo_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
+# [post] : Esta entidad permitirá almacenar los post de las publicaciones.
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key=True)
@@ -56,6 +58,7 @@ class Post(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
+# [media] : Esta entidad permitirá almacenar los archivos media asociados a un post.
 class Media(Base):
     __tablename__ = 'media'
     id = Column(Integer, primary_key=True)
@@ -64,6 +67,7 @@ class Media(Base):
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship(Post)
 
+# [comment] : Esta entidad permitirá almacenar los comentarios asociados a un post de una publicación.
 class Comment(Base):
     __tablename__ = 'comment'
     id = Column(Integer, primary_key=True)
